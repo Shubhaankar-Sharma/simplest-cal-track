@@ -26,14 +26,12 @@ interface AnalysisResponse {
 }
 
 class ApiService {
-  private baseUrl: string;
 
-  constructor(baseUrl: string) {
-    this.baseUrl = baseUrl;
+  constructor() {
   }
 
   private async fetchApi<T>(endpoint: string, method: string, body?: object): Promise<T> {
-    const response = await fetch(`${this.baseUrl}${endpoint}`, {
+    const response = await fetch(`/api${endpoint}`, {
       method,
       headers: {
         'Content-Type': 'application/json',
@@ -60,7 +58,7 @@ class ApiService {
 }
 
 // Create and export a single instance of the API service
-const apiService = new ApiService(process.env.OUR_API_BASE_URL || 'http://localhost:8000');
+const apiService = new ApiService();
 // const apiService = new ApiService('http://localhost:8000');
 export default apiService;
 

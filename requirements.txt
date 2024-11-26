@@ -1,5 +1,0 @@
-anthropic
-python-dotenv
-fastapi[standard]
-langchain_community
-langchain_anthropic
