@@ -90,7 +90,7 @@ export default function Home() {
     <div className="min-h-screen p-4 bg-gray-50 relative">
       <CalorieBubble percentage={caloriePercentage} />
       <div className="max-w-md mx-auto">
-        <h1 className="text-2xl font-bold mb-4">Simplest Calorie Tracker</h1>
+        <h1 className="text-2xl font-bold mb-4">Stupid Simple Calorie Tracker</h1>
         <CalorieLimitSetting limit={calorieLimit} setLimit={setCalorieLimit} />
         <div className="mb-4">
           <DateSelector onSelectDate={handleDateSelect} />
