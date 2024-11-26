@@ -3,7 +3,7 @@ import type { MetadataRoute } from 'next'
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Stupid Simple Calorie Tracker',
-    short_name: 'Cals',
+    short_name: 'Cal',
     description: 'Stupid Simple Calorie Tracker',
     start_url: '/',
     display: 'standalone',
