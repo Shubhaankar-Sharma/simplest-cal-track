@@ -2,9 +2,10 @@ import { useEffect, useRef } from 'react'
 
 interface Props {
   percentage: number;
+  title: string;
 }
 
-export default function CalorieBubble({ percentage }: Props) {
+export default function CalorieBubble({ percentage, title }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -16,7 +17,7 @@ export default function CalorieBubble({ percentage }: Props) {
 
     const centerX = canvas.width / 2
     const centerY = canvas.height / 2
-    const radius = Math.min(centerX, centerY) - 10
+    const radius = Math.min(centerX, centerY) - 5
 
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -60,10 +61,11 @@ export default function CalorieBubble({ percentage }: Props) {
   return (
     <canvas 
       ref={canvasRef} 
-      width={100} 
-      height={100} 
-      className="absolute top-4 right-4 z-10"
-      aria-label={`Calorie intake indicator: ${percentage <= 100 ? 'Good' : percentage <= 120 ? 'Warning' : 'Danger'}`}
+      width={60} 
+      height={60} 
+      className="w-[60px] h-[60px] md:w-[80px] md:h-[80px]"
+      aria-label={`${title}: ${percentage <= 100 ? 'Good' : percentage <= 120 ? 'Warning' : 'Danger'}`}
+      title={title}
     />
   )
 }

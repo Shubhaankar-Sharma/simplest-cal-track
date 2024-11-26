@@ -87,43 +87,44 @@ export default function Home() {
   const caloriePercentage = (totalCalories / calorieLimit) * 100
 
   return (
-    <div className="min-h-screen p-4 bg-gray-50 relative">
-      <CalorieBubble percentage={caloriePercentage} />
+    <div className="min-h-screen p-4 bg-gray-50">
       <div className="max-w-md mx-auto">
-        <h1 className="text-2xl font-bold mb-4">Stupid Simple Calorie Tracker</h1>
-        <CalorieLimitSetting limit={calorieLimit} setLimit={setCalorieLimit} />
-        <div className="mb-4">
+        <div className="flex justify-center mb-4">
+          <CalorieBubble percentage={caloriePercentage} title="Calorie intake indicator" />
+        </div>
+        <div className="space-y-4">
+          <CalorieLimitSetting limit={calorieLimit} setLimit={setCalorieLimit} />
           <DateSelector onSelectDate={handleDateSelect} />
-        </div>
-        <MealInput onAddMeal={addNewMeal} />
-        <Summary 
-          totalCalories={totalCalories} 
-          calorieLimit={calorieLimit}
-          totalProtein={totalProtein}
-          totalFat={totalFat}
-          totalCarbs={totalCarbs}
-          totalFiber={totalFiber}
-        />
-        <div className="mb-4">
-          <Button onClick={handleGetAnalysis}>Get Daily Analysis</Button>
-        </div>
-        {analysis && (
-          <div className="mb-4 p-4 bg-white rounded shadow">
-            <h2 className="text-xl font-semibold mb-2">Daily Analysis</h2>
-            <p>{analysis}</p>
+          <MealInput onAddMeal={addNewMeal} />
+          <Summary 
+            totalCalories={totalCalories} 
+            calorieLimit={calorieLimit}
+            totalProtein={totalProtein}
+            totalFat={totalFat}
+            totalCarbs={totalCarbs}
+            totalFiber={totalFiber}
+          />
+          <div>
+            <Button onClick={handleGetAnalysis} className="w-full">Get Daily Analysis</Button>
           </div>
-        )}
-        <MealList 
-          meals={dailyMeals} 
-          onEditMeal={(index, updatedMeal) => editMeal(dateKey, index, updatedMeal)}
-          onRemoveMeal={(index) => removeMealFromList(dateKey, index)}
-        />
-        {showProfileForm && (
-          <div className="mt-4 p-4 bg-white rounded shadow">
-            <h2 className="text-xl font-semibold mb-2">User Profile</h2>
-            <UserProfileForm initialProfile={userProfile} onSave={handleSaveProfile} />
-          </div>
-        )}
+          {analysis && (
+            <div className="p-4 bg-white rounded shadow">
+              <h2 className="text-xl font-semibold mb-2">Daily Analysis</h2>
+              <p>{analysis}</p>
+            </div>
+          )}
+          <MealList 
+            meals={dailyMeals} 
+            onEditMeal={(index, updatedMeal) => editMeal(dateKey, index, updatedMeal)}
+            onRemoveMeal={(index) => removeMealFromList(dateKey, index)}
+          />
+          {showProfileForm && (
+            <div className="mt-4 p-4 bg-white rounded shadow">
+              <h2 className="text-xl font-semibold mb-2">User Profile</h2>
+              <UserProfileForm initialProfile={userProfile} onSave={handleSaveProfile} />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )
